@@ -24,7 +24,20 @@ export const HeroSection = () => {
                             transition={{ duration: 0.6, ease: "easeOut" }}
                         >
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-primary leading-[1.1] mb-6">
-                                SkilledLink: Revolutionizing <span className="text-accent">Blue-Collar Recruitment.</span>
+                                <motion.span
+                                    className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#1e3a8a] via-[#60a5fa] to-[#1e3a8a] bg-[length:200%_auto]"
+                                    animate={{
+                                        backgroundPosition: ["200% center", "0% center"],
+                                        opacity: [0.8, 1, 0.8]
+                                    }}
+                                    transition={{
+                                        backgroundPosition: { duration: 3, repeat: Infinity, ease: "linear" },
+                                        opacity: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                                    }}
+                                >
+                                    Daily Gig
+                                </motion.span>
+                                : Revolutionizing <span className="text-accent">Blue-Collar Recruitment.</span>
                             </h1>
                         </motion.div>
 
