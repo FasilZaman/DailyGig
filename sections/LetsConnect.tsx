@@ -72,7 +72,6 @@ const TextAreaField = ({ label, placeholder, id, value, onChange, error }: { lab
 
 export const LetsConnect = () => {
     const [isSent, setIsSent] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
     const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
 

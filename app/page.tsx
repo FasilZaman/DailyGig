@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <ProjectLayout>
       <HeroSection />
-      <MissionImpact />
       <ProjectHighlights />
+      <MissionImpact />
       <LetsConnect />
     </ProjectLayout>
   );
