@@ -6,26 +6,36 @@ import { Github, Linkedin, Mail, Send, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { clsx } from "clsx";
 
-const InputField = ({ label, type = "text", placeholder, id }: { label: string, type?: string, placeholder: string, id: string }) => (
+const InputField = ({ label, type = "text", placeholder, id, value, onChange, error }: { label: string, type?: string, placeholder: string, id: string, value?: string, onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void, error?: string }) => (
     <div className="space-y-2">
         <label htmlFor={id} className="text-sm font-semibold text-white/90 uppercase tracking-wide">{label}</label>
         <input
             type={type}
             id={id}
+            value={value}
+            onChange={onChange}
             placeholder={placeholder}
-            className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
+            className={clsx(
+                "w-full bg-white/10 border rounded-lg px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all",
+                error ? "border-red-400 focus:ring-red-400" : "border-white/20"
+            )}
         />
+        {error && <span className="text-xs text-red-300 ml-1">{error}</span>}
     </div>
 );
 
-const SelectField = ({ label, options, id }: { label: string, options: string[], id: string }) => (
+const SelectField = ({ label, options, id, value, onChange, error }: { label: string, options: string[], id: string, value?: string, onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void, error?: string }) => (
     <div className="space-y-2">
         <label htmlFor={id} className="text-sm font-semibold text-white/90 uppercase tracking-wide">{label}</label>
         <div className="relative">
             <select
                 id={id}
-                className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white appearance-none focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
-                defaultValue=""
+                value={value}
+                onChange={onChange}
+                className={clsx(
+                    "w-full bg-white/10 border rounded-lg px-4 py-3 text-white appearance-none focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all",
+                    error ? "border-red-400 focus:ring-red-400" : "border-white/20"
+                )}
             >
                 <option value="" disabled className="bg-slate-800 text-stone-400">Select an option</option>
                 {options.map(opt => (
@@ -38,29 +48,69 @@ const SelectField = ({ label, options, id }: { label: string, options: string[],
                 </svg>
             </div>
         </div>
+        {error && <span className="text-xs text-red-300 ml-1">{error}</span>}
     </div>
 );
 
-const TextAreaField = ({ label, placeholder, id }: { label: string, placeholder: string, id: string }) => (
+const TextAreaField = ({ label, placeholder, id, value, onChange, error }: { label: string, placeholder: string, id: string, value?: string, onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void, error?: string }) => (
     <div className="space-y-2">
         <label htmlFor={id} className="text-sm font-semibold text-white/90 uppercase tracking-wide">{label}</label>
         <textarea
             id={id}
             rows={4}
+            value={value}
+            onChange={onChange}
             placeholder={placeholder}
-            className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all resize-none"
+            className={clsx(
+                "w-full bg-white/10 border rounded-lg px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all resize-none",
+                error ? "border-red-400 focus:ring-red-400" : "border-white/20"
+            )}
         />
+        {error && <span className="text-xs text-red-300 ml-1">{error}</span>}
     </div>
 );
 
 export const LetsConnect = () => {
     const [isSent, setIsSent] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+    const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+    const validate = () => {
+        const newErrors: { [key: string]: string } = {};
+        if (!form.name.trim()) newErrors.name = "Name is required";
+        if (!form.email.trim()) {
+            newErrors.email = "Email is required";
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+            newErrors.email = "Invalid email format";
+        }
+        if (!form.subject) newErrors.subject = "Please select a subject";
+        if (!form.message.trim()) newErrors.message = "Message is required";
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Simulate network request
-        setTimeout(() => setIsSent(true), 800);
+        if (validate()) {
+            // Construct mailto link
+            const subject = encodeURIComponent(`${form.subject}: ${form.name}`);
+            const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`);
+            window.location.href = `mailto:fasilzaman987@gmail.com?subject=${subject}&body=${body}`;
+
+            // Show success state
+            setTimeout(() => setIsSent(true), 1000);
+        }
     };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+        setForm({ ...form, [e.target.id]: e.target.value });
+        if (errors[e.target.id]) {
+            setErrors({ ...errors, [e.target.id]: "" });
+        }
+    };
+
 
     return (
         <section className="py-24 bg-white">
@@ -83,11 +133,11 @@ export const LetsConnect = () => {
                         </div>
 
                         <div className="space-y-4">
-                            <a href="mailto:hello@example.com" className="flex items-center gap-4 text-stone-600 hover:text-primary transition-colors group">
+                            <a href="mailto:fasilzaman987@gmail.com" className="flex items-center gap-4 text-stone-600 hover:text-primary transition-colors group">
                                 <div className="w-12 h-12 rounded-full bg-stone-100 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
                                     <Mail size={20} className="text-primary" />
                                 </div>
-                                <span className="font-medium">hello@example.com</span>
+                                <span className="font-medium">fasilzaman987@gmail.com</span>
                             </a>
 
                             <div className="pt-8 border-t border-stone-100 flex gap-4">
@@ -126,14 +176,39 @@ export const LetsConnect = () => {
                                     >
                                         <h3 className="text-2xl font-bold text-white mb-2">Send a Message</h3>
 
-                                        <InputField id="name" label="Name" placeholder="John Doe" />
-                                        <InputField id="email" label="Email" type="email" placeholder="john@example.com" />
+                                        <InputField
+                                            id="name"
+                                            label="Name"
+                                            placeholder="John Doe"
+                                            value={form.name}
+                                            onChange={handleChange}
+                                            error={errors.name}
+                                        />
+                                        <InputField
+                                            id="email"
+                                            label="Email"
+                                            type="email"
+                                            placeholder="john@example.com"
+                                            value={form.email}
+                                            onChange={handleChange}
+                                            error={errors.email}
+                                        />
                                         <SelectField
                                             id="subject"
                                             label="Subject"
                                             options={["Hiring", "Collaboration", "Project Feedback", "Other"]}
+                                            value={form.subject}
+                                            onChange={handleChange}
+                                            error={errors.subject}
                                         />
-                                        <TextAreaField id="message" label="Message" placeholder="Tell me about your project..." />
+                                        <TextAreaField
+                                            id="message"
+                                            label="Message"
+                                            placeholder="Tell me about your project..."
+                                            value={form.message}
+                                            onChange={handleChange}
+                                            error={errors.message}
+                                        />
 
                                         <div className="pt-4">
                                             <Button

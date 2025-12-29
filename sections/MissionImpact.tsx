@@ -79,7 +79,7 @@ const ParallaxImage = () => {
         >
             <motion.div style={{ y }} className="absolute inset-0 w-full h-[120%] -top-[10%]">
                 <Image
-                    src="https://images.unsplash.com/photo-1581092921461-eab6245b0a62?auto=format&fit=crop&w=1200&q=80"
+                    src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80"
                     alt="Skilled worker hands"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
