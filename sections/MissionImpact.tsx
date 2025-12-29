@@ -138,7 +138,7 @@ const MissionCard = () => {
                 </motion.div>
 
                 <div className="relative z-20 max-w-4xl mx-auto">
-                    <h2 className="text-accent text-xs font-bold tracking-widest uppercase mb-6 bg-blue-50/50 inline-block px-4 py-1.5 rounded-full border border-blue-100">
+                    <h2 className="text-accent text-xs font-bold tracking-widest uppercase mb-6 bg-white/40 backdrop-blur-md inline-block px-4 py-1.5 rounded-full border border-white/60 shadow-sm">
                         Our Mission
                     </h2>
                     <StaggeredText

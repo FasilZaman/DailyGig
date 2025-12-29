@@ -5,7 +5,7 @@ import { motion, HTMLMotionProps } from "framer-motion";
 import { clsx } from "clsx";
 
 export interface ButtonProps extends Omit<HTMLMotionProps<"button">, "ref" | "children"> {
-    variant?: "primary" | "accent" | "outline" | "ghost";
+    variant?: "primary" | "accent" | "secondary" | "outline" | "ghost";
     size?: "sm" | "md" | "lg" | "icon";
     isLoading?: boolean;
     children?: React.ReactNode;
@@ -20,6 +20,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         const variants = {
             primary: "bg-primary text-white hover:bg-[#152860] focus-visible:ring-primary shadow-sm border border-transparent", // Darker navy hover
             accent: "bg-accent text-white hover:bg-blue-600 focus-visible:ring-accent shadow-sm border border-transparent",
+            secondary: "bg-white text-primary hover:bg-stone-100 focus-visible:ring-white shadow-sm border border-transparent",
             outline: "border-2 border-primary text-primary hover:bg-primary/10 focus-visible:ring-primary bg-transparent",
             ghost: "text-primary hover:bg-primary/10 focus-visible:ring-primary",
         };

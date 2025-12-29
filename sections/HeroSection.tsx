@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { DeviceMockup } from "@/components/DeviceMockup";
-import { ArrowRight, PlayCircle } from "lucide-react";
+import { ArrowRight, PlayCircle, Download } from "lucide-react";
 
 export const HeroSection = () => {
     return (
@@ -44,10 +44,12 @@ export const HeroSection = () => {
                             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
                             className="flex flex-col sm:flex-row gap-4"
                         >
-                            <Button size="lg" className="group">
-                                View Case Study
-                                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                            </Button>
+                            <a href="https://play.google.com/store/apps/details?id=com.google.android.youtube" target="_blank" rel="noopener noreferrer">
+                                <Button size="lg" className="group">
+                                    Download App
+                                    <Download className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
+                                </Button>
+                            </a>
                             <Button variant="outline" size="lg" className="group">
                                 <PlayCircle className="mr-2 h-5 w-5" />
                                 Live Demo

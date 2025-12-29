@@ -138,8 +138,8 @@ export const LetsConnect = () => {
                                         <div className="pt-4">
                                             <Button
                                                 type="submit"
-                                                variant="accent"
-                                                className="w-full bg-white text-primary hover:bg-stone-100 font-bold"
+                                                variant="secondary"
+                                                className="w-full font-bold"
                                             >
                                                 Send Message
                                                 <Send size={16} className="ml-2" />
