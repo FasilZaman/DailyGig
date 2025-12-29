@@ -41,6 +41,18 @@ const SelectField = ({ label, options, id }: { label: string, options: string[],
     </div>
 );
 
+const TextAreaField = ({ label, placeholder, id }: { label: string, placeholder: string, id: string }) => (
+    <div className="space-y-2">
+        <label htmlFor={id} className="text-sm font-semibold text-white/90 uppercase tracking-wide">{label}</label>
+        <textarea
+            id={id}
+            rows={4}
+            placeholder={placeholder}
+            className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all resize-none"
+        />
+    </div>
+);
+
 export const LetsConnect = () => {
     const [isSent, setIsSent] = useState(false);
 
@@ -121,6 +133,7 @@ export const LetsConnect = () => {
                                             label="Subject"
                                             options={["Hiring", "Collaboration", "Project Feedback", "Other"]}
                                         />
+                                        <TextAreaField id="message" label="Message" placeholder="Tell me about your project..." />
 
                                         <div className="pt-4">
                                             <Button
