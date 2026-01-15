@@ -13,18 +13,18 @@ export const HeroSection = () => {
             <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl" />
 
             <div className="container mx-auto px-4 lg:px-8 relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center text-center lg:text-left">
 
                     {/* Left Side: Content */}
-                    <div className="max-w-2xl">
+                    <div className="max-w-2xl mx-auto lg:mx-0 order-first lg:order-first">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, ease: "easeOut" }}
                         >
-                            <h1 className="font-bold tracking-tight text-primary leading-[1.1] mb-8">
+                            <h1 className="font-bold tracking-tight text-primary leading-[1.1] mb-6 lg:mb-8">
                                 <motion.span
-                                    className="block text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight pb-3"
+                                    className="block text-4xl md:text-5xl lg:text-6xl font-brand font-bold tracking-tight pb-3"
                                     animate={{
                                         opacity: [0.8, 1, 0.8]
                                     }}
@@ -61,7 +61,7 @@ export const HeroSection = () => {
                                         gig
                                     </motion.span>
                                 </motion.span>
-                                <span className="block mt-3 text-2xl md:text-3xl lg:text-4xl text-slate-700 font-bold">
+                                <span className="block mt-2 lg:mt-3 text-2xl md:text-3xl lg:text-4xl text-slate-700 font-bold">
                                     <span className="text-accent"> Revolutionizing Blue-Collar Recruitment.</span>
                                 </span>
                             </h1>
@@ -71,7 +71,7 @@ export const HeroSection = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-                            className="text-lg md:text-xl text-stone-600 mb-8 leading-relaxed max-w-lg"
+                            className="text-base sm:text-lg md:text-xl text-stone-600 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0"
                         >
                             A job portal focused on connecting skilled tradespeople with top-tier employers.
                             Streamlined, efficient, and built for the modern workforce.
@@ -81,10 +81,10 @@ export const HeroSection = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-                            className="flex flex-col sm:flex-row gap-4"
+                            className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
                         >
                             <a href="https://play.google.com/store/apps/details?id=in.dailygigInc.dailygig&hl=en_IN" target="_blank" rel="noopener noreferrer">
-                                <Button size="lg" className="group">
+                                <Button size="lg" className="group w-full sm:w-auto">
                                     Download App
                                     <Download className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
                                 </Button>
@@ -100,7 +100,7 @@ export const HeroSection = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.5, duration: 0.8 }}
-                            className="mt-12 pt-8 border-t border-gray-200 flex items-center gap-8 text-stone-400 grayscale"
+                            className="mt-12 pt-8 border-t border-gray-200 flex items-center justify-center lg:justify-start gap-8 text-stone-400 grayscale"
                         >
                             {/* Placeholders for logos if needed in future */}
                             <span className="font-bold text-sm tracking-wider">TRUSTED BY INDUSTRY LEADERS</span>
@@ -108,7 +108,7 @@ export const HeroSection = () => {
                     </div>
 
                     {/* Right Side: Device Mockup */}
-                    <div className="relative">
+                    <div className="relative mb-12 lg:mb-0">
                         <DeviceMockup />
                     </div>
 
