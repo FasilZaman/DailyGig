@@ -44,7 +44,7 @@ export const DeviceMockup = () => {
                 {/* Mobile App Header */}
                 <div className="bg-primary p-4 text-white">
                     <div className="text-xs font-semibold tracking-wider opacity-70 mb-1">RECOMMENDED JOB</div>
-                    <div className="font-bold text-lg">Senior Electrician</div>
+                    <div className="font-bold text-lg">Electrician</div>
                 </div>
 
                 {/* Mobile App Body */}
@@ -54,7 +54,7 @@ export const DeviceMockup = () => {
                             <Briefcase size={18} />
                         </div>
                         <div>
-                            <h4 className="text-sm font-semibold text-foreground">Spark Tech solutions</h4>
+                            <h4 className="text-sm font-semibold text-foreground">Freelance Project</h4>
                             <p className="text-xs text-stone-500">Commercial Projects</p>
                         </div>
                     </div>
@@ -62,7 +62,7 @@ export const DeviceMockup = () => {
                     <div className="space-y-2 text-sm text-stone-600">
                         <div className="flex items-center space-x-2">
                             <MapPin size={14} className="text-accent" />
-                            <span>Phoenix, AZ</span>
+                            <span>Calicut, Kerala</span>
                         </div>
                         <div className="flex items-center space-x-2">
                             <Clock size={14} className="text-accent" />
@@ -70,16 +70,19 @@ export const DeviceMockup = () => {
                         </div>
                         <div className="flex items-center space-x-2">
                             <DollarSign size={14} className="text-accent" />
-                            <span className="font-semibold text-foreground">$32 - $45 / hr</span>
+                            <span className="font-semibold text-foreground">700 - 1200 / day</span>
                         </div>
                     </div>
 
-                    <motion.button
-                        whileTap={{ scale: 0.98 }}
-                        className="w-full py-2 bg-accent text-white rounded-lg text-sm font-semibold shadow-md hover:bg-blue-600 transition-colors"
-                    >
-                        Quick Apply
-                    </motion.button>
+                    <a href="https://play.google.com/store/apps/details?id=in.dailygigInc.dailygig&hl=en_IN" target="_blank" rel="noopener noreferrer">
+
+                        <motion.button
+                            whileTap={{ scale: 0.98 }}
+                            className="w-full py-2 bg-accent text-white rounded-lg text-sm font-semibold shadow-md hover:bg-blue-600 transition-colors"
+                        >
+                            Quick Apply
+                        </motion.button>
+                    </a>
                 </div>
             </motion.div>
         </div>

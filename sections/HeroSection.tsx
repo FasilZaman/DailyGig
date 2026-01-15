@@ -47,7 +47,7 @@ export const HeroSection = () => {
                             transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
                             className="text-lg md:text-xl text-stone-600 mb-8 leading-relaxed max-w-lg"
                         >
-                            A UX-focused job portal connecting skilled tradespeople with top-tier employers.
+                            A job portal focused on connecting skilled tradespeople with top-tier employers.
                             Streamlined, efficient, and built for the modern workforce.
                         </motion.p>
 
@@ -57,16 +57,16 @@ export const HeroSection = () => {
                             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
                             className="flex flex-col sm:flex-row gap-4"
                         >
-                            <a href="https://play.google.com/store/apps/details?id=com.google.android.youtube" target="_blank" rel="noopener noreferrer">
+                            <a href="https://play.google.com/store/apps/details?id=in.dailygigInc.dailygig&hl=en_IN" target="_blank" rel="noopener noreferrer">
                                 <Button size="lg" className="group">
                                     Download App
                                     <Download className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
                                 </Button>
                             </a>
-                            <Button variant="outline" size="lg" className="group">
+                            {/* <Button variant="outline" size="lg" className="group">
                                 <PlayCircle className="mr-2 h-5 w-5" />
                                 Live Demo
-                            </Button>
+                            </Button> */}
                         </motion.div>
 
                         {/* Trust Badges or extra info could go here */}
