@@ -19,6 +19,7 @@ export const DeviceMockup = () => {
                     src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80"
                     alt="Construction Site"
                     fill
+                    priority
                     className="object-cover opacity-60 hover:opacity-100 transition-opacity duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent pointer-events-none" />

@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { DeviceMockup } from "@/components/DeviceMockup";
-import { ArrowRight, PlayCircle, Download } from "lucide-react";
+import { PlayCircle, Download } from "lucide-react";
 
 export const HeroSection = () => {
     return (

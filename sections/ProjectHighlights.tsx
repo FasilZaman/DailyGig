@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { TouchpadOff, BadgeCheck, MapPin, MousePointerClick } from "lucide-react";
+import { Zap, MapPin, MousePointerClick } from "lucide-react";
 
 const FeatureCard = ({ icon: Icon, title, description }: { icon: any, title: string, description: string }) => (
     <motion.div
@@ -82,14 +82,14 @@ export const ProjectHighlights = () => {
                         description="No more resumes. Workers build a profile once and apply to jobs instantly with a single verified tap."
                     />
                     <FeatureCard
-                        icon={BadgeCheck}
-                        title="Verified Certifications"
-                        description="Automated license verification ensures safety and compliance, building immediate trust with employers."
+                        icon={Zap}
+                        title="Easy and Apply Fast"
+                        description="Streamlined application process designed to get you hired in record time without the usual hassle."
                     />
                     <FeatureCard
                         icon={MapPin}
-                        title="Geo-Location Jobs"
-                        description="Real-time location matching connects workers with sites nearby, reducing commute times and logistical headaches."
+                        title="Search by Location"
+                        description="Easily find jobs in your preferred area. Filter by distance or region to secure work that fits your commute."
                     />
                 </motion.div>
             </div>
