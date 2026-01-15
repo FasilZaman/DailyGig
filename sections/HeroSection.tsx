@@ -23,22 +23,44 @@ export const HeroSection = () => {
                             transition={{ duration: 0.6, ease: "easeOut" }}
                         >
                             <h1 className="font-bold tracking-tight text-primary leading-[1.1] mb-8">
-                                <span className="block text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight pb-3 ">
-                                    <span className="text-slate-900">Daily</span>
+                                <motion.span
+                                    className="block text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight pb-3"
+                                    animate={{
+                                        opacity: [0.8, 1, 0.8]
+                                    }}
+                                    transition={{
+                                        duration: 2,
+                                        repeat: Infinity,
+                                        ease: "easeInOut"
+                                    }}
+                                >
+                                    <motion.span
+                                        className="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-slate-600 to-slate-900 bg-[length:200%_auto]"
+                                        animate={{
+                                            backgroundPosition: ["200% center", "0% center"],
+                                        }}
+                                        transition={{
+                                            duration: 3,
+                                            repeat: Infinity,
+                                            ease: "linear"
+                                        }}
+                                    >
+                                        Daily
+                                    </motion.span>
                                     <motion.span
                                         className="text-transparent bg-clip-text bg-gradient-to-r from-[#1e3a8a] via-[#60a5fa] to-[#1e3a8a] bg-[length:200%_auto]"
                                         animate={{
                                             backgroundPosition: ["200% center", "0% center"],
-                                            opacity: [0.8, 1, 0.8]
                                         }}
                                         transition={{
-                                            backgroundPosition: { duration: 3, repeat: Infinity, ease: "linear" },
-                                            opacity: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                                            duration: 3,
+                                            repeat: Infinity,
+                                            ease: "linear"
                                         }}
                                     >
                                         gig
                                     </motion.span>
-                                </span>
+                                </motion.span>
                                 <span className="block mt-3 text-2xl md:text-3xl lg:text-4xl text-slate-700 font-bold">
                                     <span className="text-accent"> Revolutionizing Blue-Collar Recruitment.</span>
                                 </span>
