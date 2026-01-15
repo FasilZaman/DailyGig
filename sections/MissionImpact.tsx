@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { Quote, Eye, ShieldCheck, Zap, Hammer } from "lucide-react";
+import { Quote, Eye, ShieldCheck, Zap, Hammer, Activity } from "lucide-react";
 import Image from "next/image";
 
 // --- Components ---
@@ -39,66 +39,97 @@ interface FeatureCardProps {
 
 const FeatureCard = ({ icon: Icon, title, description, delay = 0, wide = false }: FeatureCardProps) => (
     <motion.div
-        initial={{ opacity: 0, x: -30 }}
-        whileInView={{ opacity: 1, x: 0 }}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.6, delay, ease: "easeOut" }}
-        whileHover={{ scale: 1.05, boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.25)" }}
-        className={`bg-white p-8 rounded-2xl shadow-xl border border-slate-100 relative overflow-hidden group ${wide ? 'md:col-span-2' : ''}`}
+        className={`relative p-8 rounded-3xl overflow-hidden group border border-slate-100 bg-white shadow-xl hover:shadow-2xl transition-all duration-300 ${wide ? 'md:col-span-2' : ''}`}
     >
-        {/* Inner Glow Border Beam */}
-        <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-accent/10 transition-colors duration-500" />
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none bg-gradient-to-tr from-accent/5 via-transparent to-primary/5" />
+        {/* Subtle Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-slate-50 to-blue-50/30 opacity-100 z-0" />
 
-        <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform duration-300">
-            <Icon size={32} />
+        {/* Animated Border Reveal on Hover */}
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 z-10" />
+
+        {/* Inner Content */}
+        <div className="relative z-10">
+            {/* Icon Container */}
+            <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center mb-6 text-accent group-hover:scale-110 group-hover:bg-accent group-hover:text-white transition-all duration-300 shadow-sm">
+                <Icon size={28} />
+            </div>
+
+            <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-wide">{title}</h3>
+            <p className="text-slate-600 leading-relaxed text-sm">
+                {description}
+            </p>
         </div>
-        <h3 className="text-xl font-bold text-slate-900 mb-3">{title}</h3>
-        <p className="text-slate-600 leading-relaxed max-w-sm">
-            {description}
-        </p>
+
+        {/* Decorative elements */}
+        <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-accent/5 rounded-full blur-2xl group-hover:bg-accent/10 transition-colors duration-500" />
     </motion.div>
 );
 
-const ParallaxImage = () => {
-    const ref = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: ref,
-        offset: ["start end", "end start"],
-    });
-
-    const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-
+const RealTimeActivity = () => {
     return (
         <motion.div
-            ref={ref}
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
-            className="relative h-full min-h-[400px] rounded-3xl overflow-hidden shadow-2xl group"
+            className="relative h-full min-h-[400px] bg-slate-900 rounded-3xl overflow-hidden shadow-2xl flex flex-col p-6"
         >
-            <motion.div style={{ y }} className="absolute inset-0 w-full h-[120%] -top-[10%]">
-                <Image
-                    src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80"
-                    alt="Skilled worker hands"
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-            </motion.div>
-            <div className="absolute inset-0 bg-primary/30 mix-blend-multiply" />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
+            {/* Header */}
+            <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                    <span className="text-white font-bold text-sm uppercase tracking-wider">Live Activity</span>
+                </div>
+                <Activity className="text-slate-500" size={18} />
+            </div>
 
-            <div className="absolute bottom-0 left-0 right-0 p-8 text-white bg-gradient-to-t from-black/60 to-transparent">
-                <Quote size={32} className="text-accent mb-4 opacity-90" />
-                <p className="text-lg md:text-xl font-medium italic mb-6 leading-relaxed">
-                    "Finally, an app that doesn't waste my time. I applied and was on the tools the next morning."
-                </p>
-                <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center font-bold">M</div>
-                    <div>
-                        <div className="font-bold">Mike T.</div>
-                        <div className="text-xs text-stone-300">Master Electrician</div>
-                    </div>
+            {/* Map/Data Viz Placeholder */}
+            <div className="relative flex-1 bg-slate-800/50 rounded-2xl border border-slate-700/50 overflow-hidden mb-4">
+                {/* Abstract Map Dots */}
+                {[...Array(5)].map((_, i) => (
+                    <motion.div
+                        key={i}
+                        className="absolute w-3 h-3 bg-accent rounded-full border-2 border-slate-900 shadow-[0_0_15px_rgba(59,130,246,0.6)]"
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{
+                            opacity: [0, 1, 1, 0],
+                            scale: [0, 1, 1, 0],
+                        }}
+                        transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            delay: i * 0.8,
+                            ease: "easeInOut"
+                        }}
+                        style={{
+                            top: `${20 + Math.random() * 60}%`,
+                            left: `${20 + Math.random() * 60}%`
+                        }}
+                    />
+                ))}
+
+                <div className="absolute inset-0 flex items-center justify-center opacity-10">
+                    <svg width="100%" height="100%" viewBox="0 0 100 100" className="stroke-white stroke-[0.5]">
+                        <path d="M10,50 Q50,10 90,50" fill="none" />
+                        <path d="M10,50 Q50,90 90,50" fill="none" />
+                        <line x1="50" y1="10" x2="50" y2="90" />
+                        <line x1="10" y1="50" x2="90" y2="50" />
+                    </svg>
+                </div>
+            </div>
+
+            {/* Stats */}
+            <div className="grid grid-cols-2 gap-4">
+                <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50">
+                    <div className="text-slate-400 text-xs uppercase tracking-wider mb-1">Active Sites</div>
+                    <div className="text-2xl font-bold text-white">1,248</div>
+                </div>
+                <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50">
+                    <div className="text-slate-400 text-xs uppercase tracking-wider mb-1">Matches/Hr</div>
+                    <div className="text-2xl font-bold text-accent">342</div>
                 </div>
             </div>
         </motion.div>
@@ -170,10 +201,6 @@ export const MissionImpact = () => {
                         delay={0.1}
                     />
 
-                    <div className="row-span-2 lg:col-span-1 h-full">
-                        <ParallaxImage />
-                    </div>
-
                     <FeatureCard
                         icon={ShieldCheck}
                         title="Verified Skills"
@@ -186,7 +213,6 @@ export const MissionImpact = () => {
                         title="Instant Match"
                         description="No ghosting. Our algorithms match workers to sites needing their exact skills right now, reducing downtime to zero."
                         delay={0.3}
-                        wide={true}
                     />
 
                 </div>

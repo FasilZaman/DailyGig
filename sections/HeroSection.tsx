@@ -1,10 +1,9 @@
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { DeviceMockup } from "@/components/DeviceMockup";
-import { PlayCircle, Download } from "lucide-react";
+import { Download } from "lucide-react";
 
 export const HeroSection = () => {
     return (
